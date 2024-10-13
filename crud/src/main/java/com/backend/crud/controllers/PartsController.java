@@ -44,7 +44,7 @@ public class PartsController {
 
     @GetMapping
     @PreAuthorize("hasRole('TECHNICAL')")
-    public ResponseEntity<List<Parts>> getAllUsers() {
+    public ResponseEntity<List<Parts>> getAllParts() {
         return new ResponseEntity<>(partsServiceImpl.getParts(), HttpStatus.OK);
     }
 
