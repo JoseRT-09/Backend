@@ -22,7 +22,10 @@ public class RepairServiceImpl implements RepairService {
 
     @Override
     public Repair updateRepair(Repair repair) {
-        return null;
+        if (repairRepository.existsById(repair.getId())) {
+            return repairRepository.save(repair);
+        }
+        throw new RuntimeException("Repair no encontrado");
     }
 
     @Override
@@ -38,9 +41,5 @@ public class RepairServiceImpl implements RepairService {
     @Override
     public void deleteRepairById(Long id) {
         repairRepository.deleteById(id);
-    }
-
-    public Optional<Repair> getRepairById(String name) {
-        return repairRepository.findByRepair(name);
     }
 }
