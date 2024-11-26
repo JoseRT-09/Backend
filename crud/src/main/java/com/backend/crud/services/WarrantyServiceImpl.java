@@ -22,7 +22,10 @@ public class WarrantyServiceImpl implements WarrantyService {
 
     @Override
     public Warranty updateWarranty(Warranty warranty) {
-        return null;
+        if (warrantyRepository.existsById(warranty.getId())) {
+            return warrantyRepository.save(warranty);
+        }
+        throw new RuntimeException("Garantía no encontrada");
     }
 
     @Override
@@ -40,7 +43,4 @@ public class WarrantyServiceImpl implements WarrantyService {
         warrantyRepository.deleteById(id);
     }
 
-    public Optional<Warranty> getWarrantyByname(String Warranty) {
-        return warrantyRepository.findByWarranty(Warranty);
-    }
 }

@@ -22,7 +22,10 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier updateSupplier(Supplier supplier) {
-        return null;
+        if (supplierRepository.existsById(supplier.getId())) {
+            return supplierRepository.save(supplier);
+        }
+        throw new RuntimeException("Supplier not found");
     }
 
     @Override
@@ -38,9 +41,5 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public void deleteSupplierById(Long id) {
         supplierRepository.deleteById(id);
-    }
-
-    public Optional<Supplier> getSupplierById(String supplier) {
-        return supplierRepository.findBySupplier(supplier);
     }
 }

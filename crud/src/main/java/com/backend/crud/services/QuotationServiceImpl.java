@@ -1,3 +1,4 @@
+
 package com.backend.crud.services;
 
 import com.backend.crud.entities.Quotation;
@@ -22,7 +23,10 @@ public class QuotationServiceImpl implements QuotationService {
 
     @Override
     public Quotation updateQuotation(Quotation quotation) {
-        return null;
+        if (quotationRepository.existsById(quotation.getId())) {
+            return quotationRepository.save(quotation);
+        }
+        throw new RuntimeException("Quotation not found");
     }
 
     @Override

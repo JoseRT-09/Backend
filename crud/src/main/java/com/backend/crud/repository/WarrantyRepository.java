@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface WarrantyRepository extends JpaRepository<Warranty, Long> {
-    Optional<Warranty> findByWarranty(String Warranty);
+    //Optional<Warranty> findByWarranty(String Warranty);
 }
