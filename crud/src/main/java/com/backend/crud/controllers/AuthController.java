@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +31,11 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Users user) {
         if (userService.getUserByUsername(user.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username");
+            return ResponseEntity.badRequest().body("Username already exists");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
+        user.setRole("USER"); // Rol predeterminado
         Users savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
     }
@@ -51,9 +50,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password");
         }
 
-        final UserDetails userDetails = userService.loadUserByUsername(user.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
-
+        final String jwt = jwtUtil.generateToken(userService.loadUserByUsername(user.getUsername()));
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
