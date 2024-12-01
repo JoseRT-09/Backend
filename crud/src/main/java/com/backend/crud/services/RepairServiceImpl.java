@@ -1,10 +1,12 @@
 package com.backend.crud.services;
 
-
 import com.backend.crud.entities.Repair;
+import com.backend.crud.entities.Client;
 import com.backend.crud.repository.RepairRepository;
+import com.backend.crud.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +15,21 @@ import java.util.Optional;
 public class RepairServiceImpl implements RepairService {
 
     @Autowired
-    RepairRepository repairRepository;
+    private RepairRepository repairRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Override
+    @Transactional
     public Repair saveRepair(Repair repair) {
+        // Guardamos el cliente sin validar el correo
+        Client savedClient = clientRepository.save(repair.getClient());
+
+        // Establecer el cliente guardado en la reparación
+        repair.setClient(savedClient);
+
+        // Guardar la reparación
         return repairRepository.save(repair);
     }
 

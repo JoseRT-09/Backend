@@ -1,9 +1,6 @@
 package com.backend.crud.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +25,15 @@ public class Repair {
     private String serialnumber;
     @NotBlank
     private String description;
-    @NotBlank
+
     private String imgUrl;
     private String status;
     private String typeProblem;
 
     private String contact;
     private String direction;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 }
