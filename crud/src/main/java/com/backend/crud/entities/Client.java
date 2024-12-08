@@ -16,8 +16,29 @@ public class Client {
     @NotBlank
     private String name;
 
+    @NotBlank
+    private String lastname;
+
     private String mail;
 
     @NotBlank
     private String phone;
+
+    @NotBlank
+    private String state;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String zipCode;
+
+    @NotBlank
+    private String colony;
+
+    @NotBlank
+    private String street;
+
+    @NotBlank
+    private String nh;
 }

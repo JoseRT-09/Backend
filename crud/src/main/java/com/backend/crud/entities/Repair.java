@@ -30,7 +30,6 @@ public class Repair {
     private String status;
     private String typeProblem;
 
-    private String contact;
     private String direction;
 
     @ManyToOne

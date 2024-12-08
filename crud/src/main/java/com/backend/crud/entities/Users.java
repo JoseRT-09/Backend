@@ -20,9 +20,12 @@ public class Users implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
     @NotBlank
+    private String lastname;
+
     @NotBlank
     @Column(unique = true)
     private String username;
@@ -35,6 +38,9 @@ public class Users implements UserDetails {
 
     @NotBlank
     private String password;
+
+    @NotBlank
+    private String status;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
