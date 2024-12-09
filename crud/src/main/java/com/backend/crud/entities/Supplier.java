@@ -21,18 +21,43 @@ public class Supplier {
 
     @NotBlank
     private String name;
-    @NotBlank
-    private String address;
-    @NotBlank
-    private String phone;
-    @NotBlank
-    private String email;
 
     @NotBlank
-    private String category;
+    private String lastname;
+
     @NotBlank
-    private String bankdetails;
+    private String mail;
+
+    @NotBlank
+    private String phone;
+
+    @NotBlank
+    private String rfc;
+
+    @NotBlank
+    private String categories;
+
     @NotBlank
     private String status;
+
+
+    //direccion
+    @NotBlank
+    private String state;
+
+    @NotBlank
+    private String city;
+
+    @NotBlank
+    private String zipCode;
+
+    @NotBlank
+    private String colony;
+
+    @NotBlank
+    private String street;
+
+    @NotBlank
+    private String nh;
 
 }
