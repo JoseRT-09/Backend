@@ -26,6 +26,8 @@ public class Repair {
     @NotBlank
     private String description;
 
+    private String parts;
+
     private String imgUrl;
     private String status;
     private String typeProblem;
