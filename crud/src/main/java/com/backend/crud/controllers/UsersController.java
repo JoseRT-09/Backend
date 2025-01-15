@@ -21,7 +21,7 @@ public class UsersController {
     UsersServiceImpl usersServiceImpl;
 
     @PostMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('TECHNICAL')")
     public ResponseEntity<Users> saveUser(@RequestBody Users user) {
         try {
             Users savedUser = usersServiceImpl.saveUser(user);

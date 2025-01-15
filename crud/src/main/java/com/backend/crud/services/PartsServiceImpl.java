@@ -21,9 +21,14 @@ public class PartsServiceImpl implements PartsService {
 
     @Override
     public Parts updateParts(Parts parts) {
-        return null;
-    }
+        // Verificar si existe la parte
+        if (!partsRepository.existsById(parts.getId())) {
+            throw new RuntimeException("Parte no encontrada con ID: " + parts.getId());
+        }
 
+        // Guardar los cambios
+        return partsRepository.save(parts);
+    }
     @Override
     public List<Parts> getParts() {
         return partsRepository.findAll();
